@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express'
 import { body, param } from 'express-validator'
-import { createProduct, getProductById, getProducts, updateProduct } from './handlers/product'
+import { createProduct, getProductById, getProducts, updateAvailability, updateProduct } from './handlers/product'
 import { handleInputErrors } from './middleware'
 
 const router = Router()
@@ -33,9 +33,9 @@ router.put('/:id',
     (req:Request, res:Response) => {updateProduct(req,res)}
 )
 
-router.patch('/', (req, res) => {
-    res.json('From PATCH')
-})
+router.patch('/:id',
+    (req:Request, res:Response) => {updateAvailability(req, res)}
+)
 
 router.delete('/', (req, res) => {
     res.json('From DELETE')
