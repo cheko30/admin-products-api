@@ -31,6 +31,13 @@ router.post('/',
 
 router.put('/:id',
     param('id').isInt().withMessage('ID not valid'),
+    body('name').notEmpty().withMessage('The product name is required!!!'),
+    body('price')
+        .isNumeric().withMessage('The price only numbers')
+        .notEmpty().withMessage('The product price is required!!!')
+        .custom(value => value > 0).withMessage('Price invalid'),
+    body('availability')
+        .isBoolean().withMessage('Availability must be a boolean'),
     (req:Request, res:Response, next:NextFunction) =>{handleInputErrors(req, res, next)},
     (req:Request, res:Response) => {updateProduct(req,res)}
 )
