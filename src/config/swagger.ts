@@ -1,4 +1,5 @@
 import swaggerJSDoc from "swagger-jsdoc";
+import { SwaggerUiOptions } from "swagger-ui-express";
 
 const options: swaggerJSDoc.Options = {
     swaggerDefinition: {
@@ -21,4 +22,9 @@ const options: swaggerJSDoc.Options = {
 }
 
 const swaggerSpec = swaggerJSDoc(options)
+const swaggerOptions: SwaggerUiOptions = {
+    customSiteTitle: 'Products API Documentation'
+
+}
 export default swaggerSpec
+export { swaggerOptions }
